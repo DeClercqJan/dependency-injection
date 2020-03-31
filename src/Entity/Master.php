@@ -45,13 +45,15 @@ class Master
 //        return $this->transform;
 //    }
 
-    public function log(string $input)
+    private function log(string $input)
     {
         return $this->logger->log($input);
     }
 
     public function transform(string $input) : string
     {
-        return $this->transform->transform($input);
+        $output = $this->transform->transform($input);
+        $this->log($output);
+        return $output;
     }
 }

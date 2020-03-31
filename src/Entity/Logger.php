@@ -23,6 +23,7 @@ class Logger
 
     public function log(string $input)
     {
-        return "to do: make logger. input was alvast: $input";
+        // return "to do: make logger. input was alvast: $input";
+        file_put_contents('test.log', $input . "\n\r", FILE_APPEND);
     }
 }

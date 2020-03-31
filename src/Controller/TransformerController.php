@@ -21,11 +21,10 @@ class TransformerController extends AbstractController
         $logger = new Logger();
         $master = new Master($logger, $transform);
         dump($master);
+
         $input = "test je input";
         $output = $master->transform($input);
         dump($output);
-        $output2 = $master->log($output);
-        dump($output2);
 
         return $this->render('transformer/index.html.twig', [
             'controller_name' => 'TransformerController',

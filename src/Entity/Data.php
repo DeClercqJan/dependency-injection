@@ -22,27 +22,30 @@ class Data
     private $Data;
 
     /**
-     * @ORM\Column(type="array")
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $dataTransformOptionsList = [];
-
-//    /**
-//     * @ORM\Column(type="string", length=255, nullable=true)
-//     */
-    public $transformOption;
+    private $transformOption;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function __construct(?string $Data, array $dataTransformOptionsList, $transformOption)
+    public function __construct(?string $Data = null, $transformOption = "Capitalize")
     {
         $this->Data = $Data;
-        $this->dataTransformOptionsList = $dataTransformOptionsList;
-        // $this->transformOption = $transformOption;
-        $this->transformOption  = "test transformtoption standaard";
+        $this->transformOption = $transformOption;
+    }
 
+    public function setData($Data): ?string
+    {
+        return $this->Data = $Data;
+    }
+
+    // needed this, constructor not enough as I'm actually changin this
+    public function setTransformOption($transformOption)
+    {
+        return $this->transformOption = $transformOption;
     }
 
     public function getData(): ?string
@@ -50,28 +53,9 @@ class Data
         return $this->Data;
     }
 
-//    public function setData(?string $Data): self
-//    {
-//        $this->Data = $Data;
-//
-//        return $this;
-//    }
-
-    public function getDataTransformOptionsList(): ?array
-    {
-        return $this->dataTransformOptionsList;
-    }
-
-//    public function setDataTransformOptionsList(array $dataTransformOptionsList): self
-//    {
-//        $this->dataTransformOptionsList = $dataTransformOptionsList;
-//
-//        return $this;
-//    }
 
     public function getTransformOption()
     {
         return $this->transformOption;
     }
-
 }

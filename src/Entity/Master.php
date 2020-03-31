@@ -26,17 +26,26 @@ class Master
 
     private $input;
 
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
     public function __construct(Logger $logger, TransformInterface $transform)
     {
         $this->logger = $logger;
         $this->transform = $transform;
     }
 
-    public function getId(): ?int
+    public function setTransform(TransformInterface $transform)
     {
-        return $this->id;
+        $this->transform = $transform;
     }
 
+    public function getTransform()
+    {
+        return $this->transform;
+    }
 //    public function getLogger(): ?Logger
 //    {
 //        return $this->logger;
@@ -52,7 +61,7 @@ class Master
         return $this->logger->log($input);
     }
 
-    public function transform(string $input) : string
+    public function transform(string $input): string
     {
         $output = $this->transform->transform($input);
         $this->log($output);

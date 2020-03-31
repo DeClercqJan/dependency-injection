@@ -7,6 +7,7 @@ use App\Entity\Data;
 use App\Entity\Logger;
 use App\Entity\Master;
 use App\Entity\SpacesToDashes;
+use App\Entity\TransformOptionsList;
 use App\Form\DataType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,14 +30,26 @@ class TransformerController extends AbstractController
         $master = new Master($logger, $transform);
         dump($master);
 
+
+        // $TransformOptionsList = new TransformOptionsList('a');
+
         // at first, I tried to store the input in the Masterclass, but that's a service container, I believe.
-        // therefore, I created the data-class as a 'model' to store data
+        // therefore, I created the data-class as a 'model' to store dataT
+        // also important to note, that I had to use the $data class in the form
+        // setting options, however proves difficult
         $data = new Data();
+//        $data->setDataTransformOptionsList("optie1");
+//        dump($data);
+//        $data->setDataTransformOptionsList("optie2");
+//        $data->setDataTransformOptionsList("optie3");
+
         $form = $this->createForm(DataType::class, $data);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
+            dump($data);
             $input = $data->getData();
+            dump($input);
             $output = $master->transform($input);
             dump($output);
 

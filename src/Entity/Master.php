@@ -24,6 +24,8 @@ class Master
 
     private $transform;
 
+    private $input;
+
     public function __construct(Logger $logger, TransformInterface $transform)
     {
         $this->logger = $logger;
@@ -56,4 +58,5 @@ class Master
         $this->log($output);
         return $output;
     }
+
 }

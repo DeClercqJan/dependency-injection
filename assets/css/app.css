@@ -3,3 +3,9 @@
 /*body {*/
 /*    background-color: lightgray;*/
 /*}*/
+
+* {
+    word-wrap: break-word;
+    overflow: none;
+    /*box-sizing: border-box;*/
+}

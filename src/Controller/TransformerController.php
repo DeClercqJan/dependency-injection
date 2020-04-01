@@ -63,7 +63,8 @@ class TransformerController extends AbstractController
         }
 
         return $this->render('transformer/index.html.twig', [
-            'controller_name' => 'TransformerController',
+            'h1_text' => 'Text Transformer',
+            // 'controller_name' => 'TransformerController',
             'form' => $form->createView(),
             'result' => $result,
         ]);

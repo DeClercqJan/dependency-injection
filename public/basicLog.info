@@ -10,3 +10,6 @@ test-spatie
 
 Level: INFO ; Message: TEST
 
+Level: INFO ; Message: TEST
+Level: INFO ; Message: TEST PARENT EXTENSION
+

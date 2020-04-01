@@ -58,13 +58,14 @@ class TransformerController extends AbstractController
             // Aha, this external Monolog Logger already implements an interface class. Maybe I should adapt mine to this 'standard'
             // ... and a standard it is, because I see it's in the folder psr
 
-            $basicLogger = new BasicLogger();
+            // $basicLogger = new BasicLogger();
+            $basicLogger = new BasicLogger('basicLogger');
 
             // monolog logger
             // opgelet: je moet, om gebruik te maken van een log-functie, het JUISTE type (bv.warning) in je streamhandler zetten
             // en dan kan je gebruik maken van die specfieke ->warning bv. methodes
             // om gebruik te maken van de (meer generische) ->log methode, moet je het echter ook nog eens meegeven
-            $monologLogger = new Logger('TransformerLogger');
+            $monologLogger = new Logger('monologLogger');
             $monologLogger->pushHandler(new StreamHandler('monologLog.info', Logger::INFO));
 
             $master = new Master($basicLogger, $transform);

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -20,7 +22,6 @@ class SpacesToDashes implements TransformInterface
     {
         return $this->id;
     }
-    // geen typehint voor $string nodig? wordt in ieder geval neit automatisch gecorrigeerd, ook al staat het in de itnerface die werd geimplementeerd
     public function transform(string $input) : string
     {
         $output = str_replace(' ', '-', $input);

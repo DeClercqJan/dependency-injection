@@ -1,8 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Psr\Log\LoggerInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MasterRepository")
@@ -24,41 +27,21 @@ class Master
 
     private $transform;
 
-    private $input;
-
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function __construct(Logger $logger, TransformInterface $transform)
+    public function __construct(LoggerInterface $logger, TransformInterface $transform)
+    // public function __construct(BasicLogger $logger, TransformInterface $transform)
     {
         $this->logger = $logger;
         $this->transform = $transform;
     }
 
-//    public function setTransform(TransformInterface $transform)
-//    {
-//        $this->transform = $transform;
-//    }
-//
-//    public function getTransform()
-//    {
-//        return $this->transform;
-//    }
-//    public function getLogger(): ?Logger
-//    {
-//        return $this->logger;
-//    }
-//
-//    public function getTransform(): ?TransformInterface
-//    {
-//        return $this->transform;
-//    }
-
-    private function log(string $input)
+    private function log(string $message)
     {
-        return $this->logger->log($input);
+        return $this->logger->log("INFO", $message);
     }
 
     public function transform(string $input): string
@@ -67,5 +50,4 @@ class Master
         $this->log($output);
         return $output;
     }
-
 }

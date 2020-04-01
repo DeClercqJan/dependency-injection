@@ -16,4 +16,10 @@ Level: INFO ; Message: TEST
 Level: INFO ; Message: a-b-c
 Level: INFO ; Message: test
 Level: INFO ; Message: test
+Level: INFO ; Message: test
+Level: INFO ; Message: test
+Level: INFO ; Message: test-na-boel-in-master-als-service-gestoken-te-hebben
+Level: INFO ; Message: test-123
+Level: INFO ; Message: test-123-nu-ook-spaces-to-dashes-in-master-gecreerd
+Level: INFO ; Message: TEST 123 NU OOK SPACES TO DASHES IN MASTER GECREERD
 

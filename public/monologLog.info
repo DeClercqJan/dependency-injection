@@ -14,3 +14,7 @@
 [2020-04-01T17:31:58.503418+02:00] TransformerLogger.WARNING: TESTJE 123 SPATIE SPATIE3 [] []
 [2020-04-01T17:40:25.317348+02:00] TransformerLogger.INFO: TEST [] []
 [2020-04-01T17:40:49.123562+02:00] TransformerLogger.INFO: TEST [] []
+[2020-04-01T19:37:10.330691+02:00] monologLogger.INFO: test-monologlogger-service-container-master [] []
+[2020-04-01T19:37:17.022735+02:00] monologLogger.INFO: TEST MONOLOGLOGGER SERVICE CONTAINER MASTER [] []
+[2020-04-01T19:45:45.362745+02:00] monologLogger.INFO: test [] []
+[2020-04-01T19:45:46.686698+02:00] monologLogger.INFO: test [] []

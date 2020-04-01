@@ -13,24 +13,24 @@ use Psr\Log\LoggerInterface;
 // is dit dan mijn service locator?
 class Master
 {
-    /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
-    private $id;
+//    /**
+//     * @ORM\Id()
+//     * @ORM\GeneratedValue()
+//     * @ORM\Column(type="integer")
+//     */
+//    private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $logger;
+//    /**
+//     * @ORM\Column(type="string", length=255)
+//     */
+    private LoggerInterface $logger;
 
-    private $transform;
+    private TransformInterface $transform;
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+//    public function getId(): ?int
+//    {
+//        return $this->id;
+//    }
 
     public function __construct(LoggerInterface $logger, TransformInterface $transform)
     // public function __construct(BasicLogger $logger, TransformInterface $transform)

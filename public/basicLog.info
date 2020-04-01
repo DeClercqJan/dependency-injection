@@ -12,4 +12,8 @@ Level: INFO ; Message: TEST
 
 Level: INFO ; Message: TEST
 Level: INFO ; Message: TEST PARENT EXTENSION
+Level: INFO ; Message: DUMP TIMEZONE
+Level: INFO ; Message: a-b-c
+Level: INFO ; Message: test
+Level: INFO ; Message: test
 

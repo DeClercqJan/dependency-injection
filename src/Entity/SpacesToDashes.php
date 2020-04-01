@@ -11,17 +11,18 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class SpacesToDashes implements TransformInterface
 {
-    /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
-    private $id;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+//    /**
+//     * @ORM\Id()
+//     * @ORM\GeneratedValue()
+//     * @ORM\Column(type="integer")
+//     */
+//
+//    private $id;
+//
+//    public function getId(): ?int
+//    {
+//        return $this->id;
+//    }
     public function transform(string $input) : string
     {
         $output = str_replace(' ', '-', $input);

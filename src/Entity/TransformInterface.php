@@ -11,9 +11,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 interface TransformInterface
 {
-    // this string typehint for input does not appear to be inforced ...
-    public function transform(string $string) : string ;
-
     // do I need this?
 //    /**
 //     * @ORM\Id()
@@ -26,4 +23,8 @@ interface TransformInterface
 //    {
 //        return $this->id;
 //    }
+
+    // this string typehint for input does not appear to be inforced ...
+    public function transform(string $string) : string ;
+
 }

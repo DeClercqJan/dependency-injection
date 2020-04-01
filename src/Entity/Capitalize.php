@@ -16,12 +16,12 @@ class Capitalize implements TransformInterface
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private $id;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+//    private $id;
+//
+//    public function getId(): ?int
+//    {
+//        return $this->id;
+//    }
 
     public function transform(string $input) : string
     {

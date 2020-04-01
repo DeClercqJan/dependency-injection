@@ -11,51 +11,55 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Data
 {
-    /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
-    private $id;
+//    /**
+//     * @ORM\Id()
+//     * @ORM\GeneratedValue()
+//     * @ORM\Column(type="integer")
+//     */
+//    private $id;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $Data;
+    private string $Data;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $transformOption;
+    private string $transformOption;
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+//    public function getId(): ?int
+//    {
+//        return $this->id;
+//    }
 
-    public function __construct(?string $Data = null, $transformOption = "Capitalize")
+// set default options to empty strings as to avoid nulls
+    public function __construct(?string $Data = "", ?string $transformOption = "")
     {
         $this->Data = $Data;
         $this->transformOption = $transformOption;
     }
 
-    public function setData($Data): ?string
+    // need this to render form
+     function setData(string $Data): ?string
     {
         return $this->Data = $Data;
     }
 
-    // needed this, constructor not enough as I'm actually changin this
-    public function setTransformOption($transformOption)
-    {
-        return $this->transformOption = $transformOption;
-    }
-
+    // need this to render form
     public function getData(): ?string
     {
         return $this->Data;
     }
 
-    public function getTransformOption()
+    // need this to render form
+    public function setTransformOption(?string $transformOption) : ?string
+    {
+        return $this->transformOption = $transformOption;
+    }
+
+    // need this to render form
+    public function getTransformOption() : ?string
     {
         return $this->transformOption;
     }

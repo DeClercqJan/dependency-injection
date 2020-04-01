@@ -37,15 +37,15 @@ class Master
         $this->transform = $transform;
     }
 
-    public function setTransform(TransformInterface $transform)
-    {
-        $this->transform = $transform;
-    }
-
-    public function getTransform()
-    {
-        return $this->transform;
-    }
+//    public function setTransform(TransformInterface $transform)
+//    {
+//        $this->transform = $transform;
+//    }
+//
+//    public function getTransform()
+//    {
+//        return $this->transform;
+//    }
 //    public function getLogger(): ?Logger
 //    {
 //        return $this->logger;

@@ -2,35 +2,37 @@
 
 {% block title %}Hello TransformerController!{% endblock %}
 
+{% block stylesheets %}
+    {{ encore_entry_link_tags('app') }}
+{% endblock %}
+
 {% block body %}
-    <style>
-        .example-wrapper {
-            margin: 1em auto;
-            max-width: 800px;
-            width: 95%;
-            font: 18px/1.5 sans-serif;
-        }
-
-        .example-wrapper code {
-            background: #F5F5F5;
-            padding: 2px 6px;
-        }
-    </style>
-
-    <div class="example-wrapper">
-        <h1>Hello {{ controller_name }}! ✅</h1>
-
-        This friendly message is coming from:
-        <ul>
-            <li>Your controller at <code><a
-                            href="{{ '/var/www/dependency-injection/src/Controller/TransformerController.php'|file_link(0) }}">src/Controller/TransformerController.php</a></code>
-            </li>
-            <li>Your template at <code><a
-                            href="{{ '/var/www/dependency-injection/templates/transformer/index.html.twig'|file_link(0) }}">templates/transformer/index.html.twig</a></code>
-            </li>
-        </ul>
-        {{ form_start(form) }}
-        {{ form_end(form) }}
-
+    <div class="border border-primary container-fluid vh-100 vw-100 p-5">
+        <header class="row border border-secondary w-100 d-flex justify-content-center p-0">
+            <h1 class="d-block">Hello {{ controller_name }}! ✅</h1>
+        </header>
+        <main class="row border border-secondary w-100 d-flex justify-content-center p-0">
+            <article class="border w-50 p-5">
+                <section class=" border w-100 p-5">
+                    <h2 class="text-center d-block">Enter a sentence and choose how you want to transform it!</h2>
+                    {{ form_start(form) }}
+                    {{ form_widget(form.data, {'attr': {'class': 'w-100 m-1'}}) }}
+                    {{ form_widget(form.transformOption, {'attr': {'class': 'w-100 m-1'}}) }}
+                    {{ form_widget(form.submit, {'attr': {'class': 'btn btn-primary w-100 m-1'}}) }}
+                    {{ form_end(form) }}
+                </section>
+                <section class=" border w-100 p-5 text-center">
+                    <h2>Result</h2>
+                    <p class="alert-success">{{ result }}</p>
+                </section>
+            </article>
+        </main>
+        <footer class="row border border-secondary w-100 p-0 d-flex justify-content-center">
+            <p>Footer</p>
+        </footer>
     </div>
 {% endblock %}
+
+  {% block javascripts %}
+      {{ encore_entry_script_tags('app') }}
+  {% endblock %}

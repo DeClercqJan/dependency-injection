@@ -23,23 +23,16 @@ class TransformerController extends AbstractController
 
         // to check: do i need to create service container to instantie objects that master needs? Is master a service container? or just a service ...?
         // also, I need to change the method of the Masterclass, without creating a new master instance(is this done automatically or not;
+        // edit: opted to created the Master object AFTER the form has been submitted;
         // or is this maybe a specific functionaltiy of service container?)
         // Also, should I create a void object in order not to have default choice which tranformation is needed
-        $transform = new SpacesToDashes();
-        // $transform = new Capitalize();
-        $logger = new Logger();
-        // mss beter leeg opstarten?? dan ook die check in de controller hieronder leegmaken.
-        // void objects in plaats van die transofmr en logger?
-        $master = new Master($logger, $transform);
-        dump($master);
 
         // at first, I tried to store the input in the Masterclass, but that's a service container, I believe.
         // therefore, I created the data-class as a 'model' to store dataT
         // also important to note, that I had to use the $data class in the form
         // setting options, however proves difficult
+        $result = "";
         $data = new Data();
-        dump($data);
-
         $form = $this->createForm(DataType::class, $data);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -57,20 +50,22 @@ class TransformerController extends AbstractController
             // simpeler (need to change in favour of previous suggestionS (MULTPPLE) above
             if ("SpacesToDashes" === $transformOption) {
                 $SpacesToDashes = new SpacesToDashes();
-                $master->setTransform($SpacesToDashes);
+                $transform = $SpacesToDashes;
             }
             if ("Capitalize" === $transformOption) {
                 $Capitalize = new Capitalize();
-                $master->setTransform($Capitalize);
+                $transform = $Capitalize;
             }
-
+            $logger = new Logger();
+            $master = new Master($logger, $transform);
             $output = $master->transform($input);
-            dump($output);
+            $result = $output;
         }
 
         return $this->render('transformer/index.html.twig', [
             'controller_name' => 'TransformerController',
             'form' => $form->createView(),
+            'result' => $result,
         ]);
     }
 }

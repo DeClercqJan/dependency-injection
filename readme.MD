@@ -1,22 +1,23 @@
 # TRANSFORMER
 
 ## basic idea
-- enter text, choose transformation method and log this to a logger of developer's choice
+- enter text, choose transformation method and log this to a logger of developer's choosing
 - BeCode PHP Symfony Challenge
 
 ## implementation
-- dependency injection, interface, extending classes, service container, both custom as using symfony components
-- pushing everything, also the instantion of classes without passing in any dpendent objects from outside FELT LIKE THE OPPOSITE OF DEPENDENCY INJECTION TBH
-- not sure wheterh or not extending the monolog class was a better idea than using an interface of my own of of symfony's making
-- did my best to be both strict and also be flixble (depdency inversion principle)
-- some questionable choices: started typhinting properties (7.4), but these don't accept null. So I chose to set default parameters, which I'm on the fence about. So I did allow elsewhere ...
-- built my own service container and then registered it to the Symfony DI component
+- dependency injection, interface, extending classes, service container - both custom and using symfony components
 - easily adapt which logger (basic custom logger that extends monolog, or monolog)
+- not sure wheterh or not extending the monolog class was a better idea than using an interface of my own of of symfony's making
+- pushing everything, also the instantion of classes without passing in any dependencies from outside FELT LIKE THE OPPOSITE OF DEPENDENCY INJECTION TBH
 - added checks to make sure not more isntances of the same objects are instantiated (documentation confused me)
+- built my own service container and then registered it to the Symfony DI component
+- did my best to be both strict and also be flexible (depdency inversion principle represent)
+- some questionable choices: started typhinting properties (7.4), but these don't accept null. So I chose to set default parameters, which I'm on the fence about. So I did allow elsewhere ...
+- much of this doubting is still in the code. See me think
 
 ## to do's 
 - find more dynamic way to render transformation options (now it has been hardcoded)
-- add level-parameter as a variabele to logger
+- add logger-level-parameter as a variabele to logger
 
 
 # ORIGINAL ASSIGNMENT BELOW

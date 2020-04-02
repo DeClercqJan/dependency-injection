@@ -11,12 +11,12 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Data
 {
-//    /**
-//     * @ORM\Id()
-//     * @ORM\GeneratedValue()
-//     * @ORM\Column(type="integer")
-//     */
-//    private $id;
+    /**
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
+     */
+    private $id;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -28,10 +28,10 @@ class Data
      */
     private string $transformOption;
 
-//    public function getId(): ?int
-//    {
-//        return $this->id;
-//    }
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
 
 // set default options to empty strings as to avoid nulls
     public function __construct(?string $Data = "", ?string $transformOption = "")

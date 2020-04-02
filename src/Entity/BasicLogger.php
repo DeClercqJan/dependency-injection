@@ -13,17 +13,17 @@ use Psr\Log\LoggerInterface;
  */
 class BasicLogger extends Logger
 {
-//    /**
-//     * @ORM\Id()
-//     * @ORM\GeneratedValue()
-//     * @ORM\Column(type="integer")
-//     */
-//    private $id;
-//
-//    public function getId(): ?int
-//    {
-//        return $this->id;
-//    }
+    /**
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
+     */
+    private $id;
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
 
 //    /**
 //     * @param mixed $level

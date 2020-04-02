@@ -2,8 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Entity;
+namespace App\Service;
 
+use App\Entity\BasicLogger;
+use App\Entity\Capitalize;
+use App\Entity\SpacesToDashes;
+use App\Entity\TransformInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
@@ -33,17 +37,16 @@ class Master
     private $transform;
     // private TransformInterface $transform;
 
-//    public function getId(): ?int
-//    {
-//        return $this->id;
-//    }
-
-    public function __construct($dummy)
-
+    public function getId(): ?int
     {
-        dump("construct functie van Master fires na dummy argument binnne gekregen te hebben");
+        return $this->id;
     }
 
+//    public function __construct($dummy)
+//
+//    {
+//        dump("construct functie van Master fires na dummy argument binnne gekregen te hebben");
+//    }
 
     private function log(string $message)
     {

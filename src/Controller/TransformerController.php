@@ -7,21 +7,27 @@ namespace App\Controller;
 use App\Entity\Capitalize;
 use App\Entity\Data;
 use App\Entity\BasicLogger;
-use App\Entity\Master;
+use App\Entity\Mailer;
+use App\Service\Master;
+use App\Entity\NewsletterManager;
 use App\Entity\SpacesToDashes;
 use App\Form\DataType;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class TransformerController extends AbstractController
 {
+
     /**
      * @Route("/transformer", name="transformer")
      */
-    public function index(Request $request)
+    public function index(Request $request, Master $master)
     {
         $output = "";
         // at first, I tried to store the input in the Masterclass, but that's a service container, I believe.
@@ -46,7 +52,37 @@ class TransformerController extends AbstractController
             // while this typehinting means that for example "private string $property" never can be null because of the typehint
             // so I need to find something to fix this
             // also, clearly, I constructed this object in an unelegant way
-            $master = new Master("nietszeggend, straks oplossen");
+
+            // nu met Symfony Dependency Injection component proberen
+            // $containerBuilder = new ContainerBuilder();
+            // $containerBuilder
+            // ->register('MasterDependencyInjectionExerciseBecode', 'Master')
+            // ->addArgument('nietszeggend, straks oplossen');
+            // $master = $containerBuilder->get('MasterDependencyInjectionExerciseBecode');
+
+            //DIDN'T DO IT
+//            $containerBuilder = new ContainerBuilder();
+//            $loader = new PhpFileLoader($containerBuilder, new FileLocator(__DIR__));
+//            $loader->load('services.php');
+//
+//            $mailer = new Mailer();
+//            dump($mailer);
+//            // voorbeeld van docs proberen reproduceren
+//            $containerBuilder = new ContainerBuilder();
+//            $containerBuilder
+//                ->register('mailer', 'Mailer');
+//                // ->addArgument('sendmail');
+//            $containerBuilder
+//                ->register('newsletter_manager', 'NewsletterManager')
+//                ->addArgument(new Reference('mailer'));
+//            $newsletterManager = $containerBuilder->get('newsletter_manager');
+//            dump($newsletterManager);
+            // $containerBuilder->setParameter('mailer.transport', 'sendmail');
+            // $containerBuilder
+            //    ->register('mailer', 'Mailer')
+            //    ->addArgument('%mailer.transport%');
+
+            // $master = new Master("nietszeggend, straks oplossen");
 
             if ("SpacesToDashes" === $transformOption) {
                 $master->getTransFormSpacesToDashes();
@@ -79,7 +115,8 @@ class TransformerController extends AbstractController
             // Here, flexibiltiy is advisable as other loggers may come to my shores
             // + NEED TO CHECK: can I create methods that are counter to Monolog's parent method? If not, it's an extra security, no?
             // I'm getting an error for my original method so I'm guessing more secure and I need to follow the ways of the parent
-
+            // edit: now I'm thinking, whether interface may be better after all
+            // because: f you someone would like to use another method than the log method and use the BasicLogger(my own), they may think it will work (because it extends the Monolog logger).
         }
 
         return $this->render('transformer/index.html.twig', [

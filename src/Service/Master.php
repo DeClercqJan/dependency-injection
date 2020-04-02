@@ -37,22 +37,9 @@ class Master
     private $transform;
     // private TransformInterface $transform;
 
-    private $message;
-
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-//    public function __construct()
-//    {
-//        $this->message = "123";
-//        dump("construct functie van Master fires na dummy argument binnne gekregen te hebben");
-//    }
-
-    public function testMessage()
-    {
-        return "test $this->message";
     }
 
     private function log(string $message)

@@ -1,25 +1,2 @@
-TESTJE 123 SPATIE SPATIE
-
-testje-123-spatie-spatie
-
-ESDFHSGHS<H<SH
-
-TEST
-
-test-spatie
-
-Level: INFO ; Message: TEST
-
-Level: INFO ; Message: TEST
-Level: INFO ; Message: TEST PARENT EXTENSION
-Level: INFO ; Message: DUMP TIMEZONE
-Level: INFO ; Message: a-b-c
-Level: INFO ; Message: test
-Level: INFO ; Message: test
-Level: INFO ; Message: test
-Level: INFO ; Message: test
-Level: INFO ; Message: test-na-boel-in-master-als-service-gestoken-te-hebben
-Level: INFO ; Message: test-123
-Level: INFO ; Message: test-123-nu-ook-spaces-to-dashes-in-master-gecreerd
-Level: INFO ; Message: TEST 123 NU OOK SPACES TO DASHES IN MASTER GECREERD
+Level: INFO ; Message: TEST CAPITALIZE BASIC LOGGER
 

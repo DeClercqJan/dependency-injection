@@ -8,7 +8,7 @@ use App\Entity\Capitalize;
 use App\Entity\Data;
 use App\Entity\BasicLogger;
 use App\Entity\Mailer;
-use App\Service\MailerTest;
+use App\Service\MailerUnique;
 use App\Service\Master;
 use App\Entity\NewsletterManager;
 use App\Entity\SpacesToDashes;
@@ -28,8 +28,7 @@ class TransformerController extends AbstractController
     /**
      * @Route("/transformer", name="transformer")
      */
-    public function index(Request $request, Master $master)
-        // public function index(Request $request)
+    public function index(Request $request)
     {
         $output = "";
         // at first, I tried to store the input in the Masterclass, but that's a service container, I believe.
@@ -53,29 +52,14 @@ class TransformerController extends AbstractController
             // however, I was typehinting my properties (php 7.4), but my checks to make sure only one object is instantiated of each type uses if null,
             // while this typehinting means that for example "private string $property" never can be null because of the typehint
             // so I need to find something to fix this
-            // also, clearly, I constructed this object in an unelegant way
 
-            // nu met Symfony Dependency Injection component proberen
-            // $containerBuilder = new ContainerBuilder();
-            // $containerBuilder
-            // ->register('MasterDependencyInjectionExerciseBecode', 'Master')
-            // ->addArgument('nietszeggend, straks oplossen');
-            // $master = $containerBuilder->get('MasterDependencyInjectionExerciseBecode');
-
+            // could probably typehint this in router function call, but for personal reference I prefer this
             $containerBuilder = new ContainerBuilder();
-            $containerBuilder->register('MailerTest', MailerTest::class);
-//            $containerBuilder->register('Master', Master::class)
-//                ->addArgument('12345');
-            dump($containerBuilder);
+            $containerBuilder->register('Master', Master::class);
+            // to check if it worked
             $serviceIds = $containerBuilder->getServiceIds();
             dump($serviceIds);
-            $mailerTest = $containerBuilder->get('MailerTest');
-            dump($mailerTest);
-            // $master = $containerBuilder->get('Master');
-            // dump($master);
-//            $mailer123 = $containerBuilder->get("Mailer123");
-//            dump($mailer123);
-            dump($mailerTest->getTransport());
+            $master = $containerBuilder->get('Master');
 
             if ("SpacesToDashes" === $transformOption) {
                 $master->getTransFormSpacesToDashes();
@@ -84,8 +68,8 @@ class TransformerController extends AbstractController
                 $master->getTransFormCapitalize();
             }
             // CHOOSE YOUR LOGGER
-            // $master->getBasicLogger();
-            $master->getMonologLogger();
+            $master->getBasicLogger();
+            // $master->getMonologLogger();
 
             // preferered to pass input by variabele instead of using constructor as I believe this to be more clear
             $output = $master->transform($input);

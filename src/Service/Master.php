@@ -18,16 +18,16 @@ use Psr\Log\LoggerInterface;
  */
 class Master
 {
-//    /**
-//     * @ORM\Id()
-//     * @ORM\GeneratedValue()
-//     * @ORM\Column(type="integer")
-//     */
-//    private $id;
+    /**
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
+     */
+    private $id;
 
-//    /**
-//     * @ORM\Column(type="string", length=255)
-//     */
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
 
     // need to add typehint after I know how is null check reacts
     private $logger;
@@ -37,16 +37,23 @@ class Master
     private $transform;
     // private TransformInterface $transform;
 
+    private $message;
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-//    public function __construct($dummy)
-//
+//    public function __construct()
 //    {
+//        $this->message = "123";
 //        dump("construct functie van Master fires na dummy argument binnne gekregen te hebben");
 //    }
+
+    public function testMessage()
+    {
+        return "test $this->message";
+    }
 
     private function log(string $message)
     {

@@ -8,6 +8,7 @@ use App\Entity\Capitalize;
 use App\Entity\Data;
 use App\Entity\BasicLogger;
 use App\Entity\Mailer;
+use App\Service\MailerTest;
 use App\Service\Master;
 use App\Entity\NewsletterManager;
 use App\Entity\SpacesToDashes;
@@ -28,6 +29,7 @@ class TransformerController extends AbstractController
      * @Route("/transformer", name="transformer")
      */
     public function index(Request $request, Master $master)
+        // public function index(Request $request)
     {
         $output = "";
         // at first, I tried to store the input in the Masterclass, but that's a service container, I believe.
@@ -60,29 +62,20 @@ class TransformerController extends AbstractController
             // ->addArgument('nietszeggend, straks oplossen');
             // $master = $containerBuilder->get('MasterDependencyInjectionExerciseBecode');
 
-            //DIDN'T DO IT
-//            $containerBuilder = new ContainerBuilder();
-//            $loader = new PhpFileLoader($containerBuilder, new FileLocator(__DIR__));
-//            $loader->load('services.php');
-//
-//            $mailer = new Mailer();
-//            dump($mailer);
-//            // voorbeeld van docs proberen reproduceren
-//            $containerBuilder = new ContainerBuilder();
-//            $containerBuilder
-//                ->register('mailer', 'Mailer');
-//                // ->addArgument('sendmail');
-//            $containerBuilder
-//                ->register('newsletter_manager', 'NewsletterManager')
-//                ->addArgument(new Reference('mailer'));
-//            $newsletterManager = $containerBuilder->get('newsletter_manager');
-//            dump($newsletterManager);
-            // $containerBuilder->setParameter('mailer.transport', 'sendmail');
-            // $containerBuilder
-            //    ->register('mailer', 'Mailer')
-            //    ->addArgument('%mailer.transport%');
-
-            // $master = new Master("nietszeggend, straks oplossen");
+            $containerBuilder = new ContainerBuilder();
+            $containerBuilder->register('MailerTest', MailerTest::class);
+//            $containerBuilder->register('Master', Master::class)
+//                ->addArgument('12345');
+            dump($containerBuilder);
+            $serviceIds = $containerBuilder->getServiceIds();
+            dump($serviceIds);
+            $mailerTest = $containerBuilder->get('MailerTest');
+            dump($mailerTest);
+            // $master = $containerBuilder->get('Master');
+            // dump($master);
+//            $mailer123 = $containerBuilder->get("Mailer123");
+//            dump($mailer123);
+            dump($mailerTest->getTransport());
 
             if ("SpacesToDashes" === $transformOption) {
                 $master->getTransFormSpacesToDashes();
@@ -93,8 +86,6 @@ class TransformerController extends AbstractController
             // CHOOSE YOUR LOGGER
             // $master->getBasicLogger();
             $master->getMonologLogger();
-
-            dump($master);
 
             // preferered to pass input by variabele instead of using constructor as I believe this to be more clear
             $output = $master->transform($input);
@@ -117,10 +108,12 @@ class TransformerController extends AbstractController
             // I'm getting an error for my original method so I'm guessing more secure and I need to follow the ways of the parent
             // edit: now I'm thinking, whether interface may be better after all
             // because: f you someone would like to use another method than the log method and use the BasicLogger(my own), they may think it will work (because it extends the Monolog logger).
+            // to do maybe: add level-parametera as a variabele to logger
+
         }
 
         return $this->render('transformer/index.html.twig', [
-            'h1_text' => 'Text Transformer',
+            'h1_text' => 'Transformer',
             'form' => $form->createView(),
             'output' => $output,
         ]);

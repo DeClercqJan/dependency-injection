@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Entity;
+namespace App\Service;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\MailerRepository")
+ * @ORM\Entity(repositoryClass="MailerTestRepository")
  */
-class Mailer
+class MailerTest
 {
     /**
      * @ORM\Id()

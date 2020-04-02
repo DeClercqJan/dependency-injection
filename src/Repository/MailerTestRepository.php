@@ -12,7 +12,7 @@ use Doctrine\Common\Persistence\ManagerRegistry;
  * @method Mailer[]    findAll()
  * @method Mailer[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class MailerRepository extends ServiceEntityRepository
+class MailerTestRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
@@ -20,7 +20,7 @@ class MailerRepository extends ServiceEntityRepository
     }
 
     // /**
-    //  * @return Mailer[] Returns an array of Mailer objects
+    //  * @return MailerTest[] Returns an array of MailerTest objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class MailerRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Mailer
+    public function findOneBySomeField($value): ?MailerTest
     {
         return $this->createQueryBuilder('m')
             ->andWhere('m.exampleField = :val')
